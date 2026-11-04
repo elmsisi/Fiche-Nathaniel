@@ -85,4 +85,602 @@
   .hud-tick {
     position: fixed; z-index: 50; pointer-events: none;
     font-family: 'Share Tech Mono', monospace;
-    font-size: 9px; color: var(--cyan); opacity: 0.6
+    font-size: 9px; color: var(--cyan); opacity: 0.6; letter-spacing: 0.15em;
+  }
+  .hud-tick.t-tl { top: 20px; left: 52px; }
+  .hud-tick.t-tr { top: 20px; right: 52px; }
+  .hud-tick.t-bl { bottom: 20px; left: 52px; }
+  .hud-tick.t-br { bottom: 20px; right: 52px; }
+  .blink { animation: blink 1.2s steps(1) infinite; }
+  @keyframes blink { 0%,50%{opacity:1;} 51%,100%{opacity:0;} }
+
+  /* ── CONTAINER ────────────────────────────────────────────────────── */
+  .container {
+    max-width: 860px; margin: 0 auto;
+    padding: 3rem 1.5rem 4rem;
+    position: relative; z-index: 5;
+  }
+
+  /* ── LOGO & AGENCY HEADER ─────────────────────────────────────────── */
+  .bca-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .bca-logo-wrap {
+    width: 90px;
+    height: 90px;
+    border: 1px solid var(--cyan);
+    background: var(--bg2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 0 15px rgba(0,213,240,0.15);
+    flex-shrink: 0;
+  }
+  .bca-logo-svg {
+    width: 70px;
+    height: 70px;
+    fill: none;
+    stroke: var(--cyan);
+    stroke-width: 2;
+  }
+  .bca-titles {
+    display: flex;
+    flex-direction: column;
+  }
+  .bca-titles .org-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #e2e7f0;
+    letter-spacing: 0.12em;
+    text-shadow: 0 0 10px rgba(0,213,240,0.3);
+  }
+  .bca-titles .dept-name {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    color: var(--cyan);
+    letter-spacing: 0.25em;
+    margin-top: 4px;
+  }
+  .bca-titles .doc-type {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--text3);
+    letter-spacing: 0.15em;
+    margin-top: 6px;
+  }
+
+  /* ── HEADER BAND ─────────────────────────────────────────────────── */
+  .header-band {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 0.5rem 0;
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 2rem;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px; color: var(--accent-bright); letter-spacing: 0.12em;
+  }
+  .status-dot {
+    display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--green); margin-right: 6px;
+    box-shadow: 0 0 8px var(--green-glow);
+    animation: dot-pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes dot-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+  /* ── TITLE ROW ────────────────────────────────────────────────────── */
+  .title-row { display: flex; align-items: flex-end; gap: 1.2rem; margin-bottom: 2rem; flex-wrap: wrap; }
+  .title-row h1 {
+    font-family: 'Cinzel', serif; font-size: 2.8rem; font-weight: 900;
+    color: #e8eaf0; letter-spacing: 0.08em; line-height: 1;
+    text-shadow: 0 0 15px rgba(32,94,148,0.6);
+  }
+  .title-row .subtitle {
+    font-family: 'Share Tech Mono', monospace; font-size: 11px;
+    color: var(--cyan); letter-spacing: 0.2em; padding-bottom: 0.3rem;
+  }
+
+  /* ── PORTRAIT & IDENTITY GRID ─────────────────────────────────────── */
+  .portrait-row { display: grid; grid-template-columns: 220px 1fr; gap: 1.5rem; margin-bottom: 2.5rem; align-items: start; }
+  .portrait {
+    border: 1px solid var(--cyan); background: var(--bg2);
+    width: 220px; height: 280px;
+    position: relative; flex-shrink: 0;
+    box-shadow: 0 0 20px rgba(0,213,240,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .portrait-placeholder {
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, var(--bg3) 0%, var(--bg2) 90%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text3);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-align: center;
+    padding: 1rem;
+  }
+  .portrait-silhouette {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1rem;
+    stroke: var(--accent);
+    fill: none;
+    opacity: 0.6;
+  }
+  .portrait .corner {
+    position: absolute; width: 12px; height: 12px;
+    border: 1.5px solid var(--cyan); z-index: 4;
+  }
+  .portrait .corner.tl { top: 4px; left: 4px; border-right: none; border-bottom: none; }
+  .portrait .corner.tr { top: 4px; right: 4px; border-left: none; border-bottom: none; }
+  .portrait .corner.bl { bottom: 4px; left: 4px; border-right: none; border-top: none; }
+  .portrait .corner.br { bottom: 4px; right: 4px; border-left: none; border-top: none; }
+  
+  .portrait .rec {
+    position: absolute; top: 8px; right: 8px; z-index: 4;
+    display: flex; align-items: center; gap: 4px;
+    font-family: 'Share Tech Mono', monospace; font-size: 9px;
+    color: var(--red-bright); letter-spacing: 0.15em;
+  }
+  .portrait .rec::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--red-glow); box-shadow: 0 0 6px var(--red-glow);
+    animation: rec-blink 1.2s ease-in-out infinite;
+  }
+  @keyframes rec-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+
+  /* ── IDENTITY PANEL ──────────────────────────────────────────────── */
+  .identity-panel { display: flex; flex-direction: column; gap: 0.2rem; }
+  .id-section-title {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px; color: var(--cyan); letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem; padding-bottom: 0.35rem;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .id-line {
+    display: flex; gap: 0.5rem; padding: 0.25rem 0;
+    font-size: 14.5px; align-items: baseline;
+    border-bottom: 1px dashed rgba(26,54,82,0.4);
+  }
+  .id-label {
+    font-family: 'Share Tech Mono', monospace; font-size: 11px;
+    color: var(--text3); letter-spacing: 0.12em;
+    min-width: 110px; flex-shrink: 0;
+  }
+  .id-val { color: var(--text); font-weight: 400; }
+  .id-val em { color: var(--accent-bright); font-style: normal; }
+  .id-val.highlight-red { color: var(--red-bright); font-weight: 600; text-shadow: 0 0 8px rgba(189,58,58,0.4); }
+
+  /* ── ACCREDITATION BADGE ─────────────────────────────────────────── */
+  .power-badge {
+    border: 1px solid var(--red-bright); background: rgba(138,28,28,0.15);
+    padding: 0.8rem 1rem;
+    display: flex; align-items: center; gap: 0.8rem;
+    margin: 1.5rem 0;
+    position: relative;
+    box-shadow: inset 0 0 15px rgba(138,28,28,0.2);
+  }
+  .power-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--red-bright); flex-shrink: 0;
+    box-shadow: 0 0 10px var(--red-glow);
+    animation: dot-pulse 1.5s ease-in-out infinite;
+  }
+  .power-name {
+    font-family: 'Cinzel', serif; font-size: 15px; font-weight: 700;
+    color: #f0c5c5; letter-spacing: 0.1em;
+  }
+  .power-desc {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10.5px; color: var(--red-bright);
+    letter-spacing: 0.08em; margin-left: auto;
+  }
+
+  /* ── DIVIDER ─────────────────────────────────────────────────────── */
+  .divider {
+    border: none; height: 1px;
+    margin: 2rem 0;
+    position: relative;
+    background: linear-gradient(90deg, var(--border) 0%, var(--cyan) 50%, var(--border) 100%);
+    opacity: 0.6;
+  }
+  .divider::after {
+    content: attr(data-label);
+    position: absolute; top: -10px; left: 0;
+    background: var(--bg);
+    padding-right: 1rem;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px; color: var(--cyan);
+    letter-spacing: 0.22em; text-transform: uppercase;
+  }
+
+  /* ── SECTION TEXT & NARRATIVE ────────────────────────────────────── */
+  .narrative {
+    line-height: 1.8; font-size: 15px; font-weight: 300;
+    color: var(--text2); margin-bottom: 1.2rem;
+  }
+  .narrative strong { color: var(--text); font-weight: 600; }
+  .narrative em { color: var(--accent-bright); font-style: normal; }
+
+  /* ── TRAITS GRID (Psychologie) ──────────────────────────────────── */
+  .trait-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+  .trait-col {
+    border: 1px solid var(--border); background: var(--bg2);
+    padding: 1rem; position: relative;
+  }
+  .trait-col-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px; letter-spacing: 0.2em;
+    margin-bottom: 0.8rem; padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--border);
+    text-transform: uppercase;
+  }
+  .trait-col-label.pos { color: var(--green-glow); }
+  .trait-col-label.neg { color: var(--red-bright); }
+  .trait-item {
+    font-size: 13.5px; color: var(--text2);
+    padding: 0.3rem 0;
+    display: flex; align-items: flex-start; gap: 0.5rem;
+    line-height: 1.4;
+  }
+  .trait-item::before { content: '▸'; color: var(--text3); font-size: 11px; }
+
+  /* ── CAPACITIES / ANOMALY BLOCKS ─────────────────────────────────── */
+  .capacity-block {
+    border: 1px solid var(--border);
+    background: var(--bg2);
+    padding: 1.2rem;
+    margin-bottom: 1.2rem;
+    position: relative;
+  }
+  .capacity-block.alpha { border-left: 3px solid var(--cyan); }
+  .capacity-block.beta { border-left: 3px solid var(--red-bright); }
+  
+  .capacity-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--border-dim);
+  }
+  .capacity-title {
+    font-family: 'Cinzel', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #e2e7f0;
+    letter-spacing: 0.08em;
+  }
+  .capacity-tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    padding: 2px 6px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--accent-bright);
+  }
+  .capacity-details {
+    list-style: none;
+    margin-top: 0.8rem;
+  }
+  .capacity-details li {
+    font-size: 13.5px;
+    color: var(--text2);
+    margin-bottom: 0.4rem;
+    padding-left: 1rem;
+    position: relative;
+  }
+  .capacity-details li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--cyan);
+  }
+
+  /* ── PHYS GRID ──────────────────────────────────────────────────── */
+  .phys-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 1.5rem; }
+  .phys-chip {
+    border: 1px solid var(--border); background: var(--bg2);
+    padding: 0.7rem 0.9rem; position: relative;
+  }
+  .chip-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9.5px; color: var(--text3);
+    letter-spacing: 0.18em; display: block; margin-bottom: 2px;
+  }
+  .chip-val { font-size: 14px; color: var(--text); font-weight: 500; }
+
+  /* ── HISTORIQUE / TIMELINE ───────────────────────────────────────── */
+  .timeline { position: relative; padding-left: 1.5rem; margin: 1.5rem 0; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 5px; bottom: 5px;
+    width: 2px; background: var(--border);
+  }
+  .timeline-event { position: relative; margin-bottom: 1.5rem; }
+  .timeline-event::before {
+    content: ''; position: absolute; left: -1.85rem; top: 4px;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--cyan); box-shadow: 0 0 6px var(--cyan);
+  }
+  .timeline-title {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px; color: var(--cyan);
+    letter-spacing: 0.12em; margin-bottom: 0.3rem;
+  }
+
+  /* ── FOOTER ──────────────────────────────────────────────────────── */
+  .footer-band {
+    margin-top: 4rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+    display: flex; justify-content: space-between;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9.5px; color: var(--text3);
+    letter-spacing: 0.12em;
+  }
+  .footer-band span.sec-ok { color: var(--green-glow); }
+
+  /* ── RESPONSIVE ──────────────────────────────────────────────────── */
+  @media (max-width: 720px) {
+    .container { padding: 1.5rem 1rem; }
+    .bca-header { flex-direction: column; text-align: center; }
+    .portrait-row { grid-template-columns: 1fr; }
+    .portrait { margin: 0 auto; }
+    .trait-grid, .phys-grid { grid-template-columns: 1fr; }
+    .hud-tick { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="vhs"></div>
+<div class="crt-edge"></div>
+
+<span class="hud-corner tl"></span><span class="hud-tick t-tl">B.C.A. · ARCHIVE SCIENTIFIQUE <span class="blink">█</span></span>
+<span class="hud-corner tr"></span><span class="hud-tick t-tr">ACCREDITATION: RUPTURE ◥</span>
+<span class="hud-corner bl"></span><span class="hud-tick t-bl">◣ DOSSIER: ROY_N_092</span>
+<span class="hud-corner br"></span><span class="hud-tick t-br">STATUT: ACTIF / REGULARISE ◢</span>
+
+<div class="container">
+
+  <!-- BCA SCIENTIFIC DIVISION HEADER -->
+  <div class="bca-header">
+    <div class="bca-logo-wrap">
+      <!-- Logo Vectoriel Stylisé BCA -->
+      <svg class="bca-logo-svg" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="42" stroke="#00d5f0" stroke-width="1.5" stroke-dasharray="6,3"/>
+        <circle cx="50" cy="50" r="32" stroke="#1a3652" stroke-width="1"/>
+        <polygon points="50,15 80,75 20,75" stroke="#00d5f0" stroke-width="1.5" fill="none"/>
+        <circle cx="50" cy="55" r="10" stroke="#00d5f0" stroke-width="1"/>
+        <line x1="50" y1="10" x2="50" y2="20" stroke="#00d5f0" stroke-width="2"/>
+        <line x1="15" y1="70" x2="25" y2="65" stroke="#00d5f0" stroke-width="2"/>
+        <line x1="85" y1="70" x2="75" y2="65" stroke="#00d5f0" stroke-width="2"/>
+      </svg>
+    </div>
+    <div class="bca-titles">
+      <div class="org-name">BUREAU DE CONTRÔLE DES ANOMALIES</div>
+      <div class="dept-name">DIVISION SCIENTIFIQUE · SECTION ARCHIVES ET RECHERCHE</div>
+      <div class="doc-type">DOSSIER MEDICAL ET BIOGRAPHIQUE DE PERSONNEL INTRADIVISIONNAIRE</div>
+    </div>
+  </div>
+
+  <div class="header-band">
+    <span><span class="status-dot"></span>SYS.VER : 8.4.2 · ANOM-DB</span>
+    <span>SÉCURITÉ : ACCRÉDITATION DE NIVEAU 4</span>
+    <span>REGISTRE : CENTRAL</span>
+  </div>
+
+  <div class="title-row">
+    <h1>ROY, Nathaniel</h1>
+    <div class="subtitle">// Chercheur Principal · Registre #ROY-3109 //</div>
+  </div>
+
+  <!-- ACCREDITATION BADGE -->
+  <div class="power-badge">
+    <span class="power-dot"></span>
+    <span class="power-name">ACCRÉDITATION ANOMALIES DE CLASSE « RUPTURE »</span>
+    <span class="power-desc">NIVEAU DE RESTRICTION : HAUTE</span>
+  </div>
+
+  <!-- PORTRAIT & PRIMARY IDENTIFICATION -->
+  <div class="portrait-row">
+    <div class="portrait">
+      <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+      <span class="rec">STATUT : ACTIF</span>
+      <div class="portrait-placeholder">
+        <svg class="portrait-silhouette" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+        </svg>
+        <span>PHOTOGRAPHIE<br>SUJET ROY-N</span>
+        <span style="color: var(--cyan); margin-top: 8px;">EMPREINTE CONFIRMÉE</span>
+      </div>
+    </div>
+
+    <div class="identity-panel">
+      <div class="id-section-title">I. IDENTITÉ ET ÉTAT CIVIL</div>
+      <div class="id-line"><span class="id-label">NOM :</span><span class="id-val">ROY</span></div>
+      <div class="id-line"><span class="id-label">PRÉNOM :</span><span class="id-val">Nathaniel</span></div>
+      <div class="id-line"><span class="id-label">ÂGE :</span><span class="id-val">31 ans</span></div>
+      <div class="id-line"><span class="id-label">SEXE :</span><span class="id-val">Masculin</span></div>
+      <div class="id-line"><span class="id-label">ORIENTATION :</span><span class="id-val">Bisexuel</span></div>
+      <div class="id-line"><span class="id-label">NATURE / RACE :</span><span class="id-val highlight-red">Vampire (Origine humaine, infection non consentie)</span></div>
+      <div class="id-line"><span class="id-label">STATUT :</span><span class="id-val">Actif · Statut biologique régularisé</span></div>
+      <div class="id-line"><span class="id-label">PROFESSION :</span><span class="id-val">Chercheur Principal, <em>B.C.A.</em></span></div>
+      <div class="id-line"><span class="id-label">ORIGINE :</span><span class="id-val">Norvège (Milieu familial aisé)</span></div>
+    </div>
+  </div>
+
+  <div class="divider" data-label="II. EXAMEN PHYSIQUE ET CLINIQUE"></div>
+
+  <!-- PHYSICAL DESCRIPTION -->
+  <div class="phys-grid">
+    <div class="phys-chip">
+      <span class="chip-label">TAILLE / POIDS</span>
+      <span class="chip-val">1,85 m / 68 kg</span>
+    </div>
+    <div class="phys-chip">
+      <span class="chip-label">CORPULENCE / TEINT</span>
+      <span class="chip-val">Pâleur marquée, constitution fine</span>
+    </div>
+    <div class="phys-chip">
+      <span class="chip-label">PIGMENTATION OCULAIRE</span>
+      <span class="chip-val" style="color: var(--red-bright);">Rouge profond (comparable au sang frais)</span>
+    </div>
+    <div class="phys-chip">
+      <span class="chip-label">CAPILLAIRE / TRAITS</span>
+      <span class="chip-val">Blond, longueur moyenne, traits réguliers</span>
+    </div>
+  </div>
+
+  <p class="narrative">
+    <strong>Observation clinique :</strong> Le sujet présente une pâleur cutanée caractéristique et une structure corporelle élancée, lui donnant une apparence plus jeune que son âge biologique révolu. Ses cheveux blonds encadrent un visage aux traits fermes et réguliers, souvent décrits par ses paires comme ayant la consistance visuelle du marbre. 
+  </p>
+  <p class="narrative">
+    L'élément le plus singulier demeure son regard : des iris d'un <em>rouge profond</em>, évoquant l'aspect du sang frais. Le sujet compense l'impact visuel déroutant de cette particularité par une stature de gentleman irréprochable : maintien droit, gestique mesurée et mise vestimentaire soignée. Ce contraste marqué entre la menace implicite de son regard et son élégance protocolaire constitue un facteur de persuasion important lors des interactions directes.
+  </p>
+
+  <div class="divider" data-label="III. ÉVALUATION PSYCHOLOGIQUE"></div>
+
+  <p class="narrative">
+    Le profil psychologique du Chercheur Principal Roy se distingue par sa complexité et refuse les catégorisations binaires. C'est un esprit opérant principalement dans des zones grises assumées.
+  </p>
+  <p class="narrative">
+    <strong>Analyse comportementale :</strong> Dès son plus jeune âge, le sujet aborde son environnement par le prisme de la décomposition analytique plutôt que par le ressenti émotionnel. Il observe, sépare les variables et en tire des conclusions purement logiques. Si cette distanciation en fait un conseiller technique particulièrement fiable pour le BCA, elle crée un obstacle dans la gestion de son affect personnel : le sujet éprouve de l'attachement envers ses proches (notamment ses parents) mais se trouve dans l'incapacité d'analyser formellement ce sentiment. Pour un esprit méthodique habitué à tout nommer, cette indétermination représente une source de frustration constante.
+  </p>
+  <p class="narrative">
+    Parfaitement conscient des codes sociaux, il maintient une politesse exemplaire. Son intelligence précoce lui a permis de côtoyer l'élite scientifique dès son apprentissage. Cette exposition précoce a généré une dualité structurelle dans son ego :
+  </p>
+
+  <div class="trait-grid">
+    <div class="trait-col">
+      <div class="trait-col-label pos">Facteurs d'Efficacité & Forces</div>
+      <div class="trait-item">Capacité d'analyse exceptionnelle, esprit hyperactif</div>
+      <div class="trait-item">Politesse irréprochable et maîtrise parfaite des usages</div>
+      <div class="trait-item">Grande ambition scientifique et aisance pour le travail d'équipe</div>
+      <div class="trait-item">Priorisation constante du bien commun sur l'intérêt personnel</div>
+      <div class="trait-item">Capacité d'exécuter des décisions critiques à froid sous pression</div>
+    </div>
+    <div class="trait-col">
+      <div class="trait-col-label neg">Points de Vigilance & Risques</div>
+      <div class="trait-item">Déficit d'empathie affective marqué</div>
+      <div class="trait-item">Comportement parfois incisif / penchant pour la taquinerie</div>
+      <div class="trait-item">Tendance à l'égocentrisme si l'intellect est remis en cause</div>
+      <div class="trait-item">Très mauvaise tolérance à l'échec (risques dépressifs)</div>
+      <div class="trait-item">Syndrome de l'imposteur latent alimentant un doute récurrent</div>
+    </div>
+  </div>
+
+  <p class="narrative">
+    <strong>Évolution post-incident :</strong> Son intégration au BCA puis sa conversion biologique involontaire l'ont profondément fragilisé. À la suite de sa transformation, le sujet s'est volontairement isolé pendant plusieurs années dans son laboratoire personnel, réduisant ses interactions au strict nécessaire avec sa hiérarchie pour le transfert de matériel de recherche. Il montre aujourd'hui des signes de réintégration sociale au sein du département, quittant de nouveau ses zones réservées pour échanger avec ses collègues, maintenant un protocole courtois.
+  </p>
+
+  <div class="divider" data-label="IV. CAPACITÉS ET RENSEIGNEMENTS ANOMALIQUES"></div>
+
+  <!-- CAPACITY A -->
+  <div class="capacity-block alpha">
+    <div class="capacity-header">
+      <span class="capacity-title">CAPACITÉ A · CONNEXION MENTALE</span>
+      <span class="capacity-tag">TYPE : INTRUSIF / PSYCHIQUE</span>
+    </div>
+    <p class="narrative" style="font-size: 14px; margin-bottom: 0.5rem;">
+      Le sujet possède la faculté de lier son esprit à celui d'un autre organisme vivant, accédant ainsi à l'intégralité de sa mémoire, de ses connaissances et permettant une communication directe. La jonction s'effectue au sein d'un espace mental représenté et maîtrisé par le sujet.
+    </p>
+    <ul class="capacity-details">
+      <li><strong>Conditions d'activation :</strong> Ingestion préalable d'un minimum de 4 ml de sang de la cible, suivie d'un contact visuel direct.</li>
+      <li><strong>Durée maximale :</strong> 60 minutes continutes (le lien peut être rompu unilatéralement par le sujet à tout moment).</li>
+      <li><strong>Effets et contraintes :</strong> Au sein du paysage mental, le sujet exerce une omnipotence relative : il peut modifier la perception de sa cible, lui retirer des facultés (parole, vision, mobilité) ou matérialiser des éléments de son choix. Les dommages subis dans cet espace sont illusoires sur le plan physique (le corps reste intact), mais la douleur ressentie est réelle et les traumatismes psychologiques persistent au réveil.</li>
+    </ul>
+  </div>
+
+  <!-- CAPACITY B -->
+  <div class="capacity-block beta">
+    <div class="capacity-header">
+      <span class="capacity-title">CAPACITÉ B · FORME LIQUIDE</span>
+      <span class="capacity-tag">TYPE : METAMORPHOSE BIOLOGIQUE</span>
+    </div>
+    <p class="narrative" style="font-size: 14px; margin-bottom: 0.5rem;">
+      Capacité de conversion intégrale de la masse corporelle en une substance sanguine fluide.
+    </p>
+    <ul class="capacity-details">
+      <li><strong>Propriétés :</strong> Sous cette forme, le sujet perd toute possibilité de locomotion autonome complexe mais acquiert un taux de régénération extrême.</li>
+      <li><strong>Vulnérabilités :</strong> Les attaques physiques conventionnelles sont inopérantes. Seuls les traitements thermiques extrêmes (congélation rapide ou ébullition) sont susceptibles d'endommager la structure fluide du sujet.</li>
+    </ul>
+  </div>
+
+  <div class="phys-grid" style="margin-top: 1rem;">
+    <div class="phys-chip">
+      <span class="chip-label">COMPÉTENCES TERTIAIRES</span>
+      <span class="chip-val">Mathématiques avancées, biologie, informatique, technologie, musique classique (multi-instrumentiste)</span>
+    </div>
+    <div class="phys-chip">
+      <span class="chip-label">ÉQUIPEMENT PERSONNEL ASSIGNÉ</span>
+      <span class="chip-val">Tablette informatique de première génération (le sujet conserve cet équipement par habitude malgré la dotation d'outils plus récents)</span>
+    </div>
+  </div>
+
+  <div class="divider" data-label="V. HISTORIQUE ET ARCHIVES"></div>
+
+  <!-- TIMELINE -->
+  <div class="timeline">
+    <div class="timeline-event">
+      <div class="timeline-title">1. ORIGINES ET CONTEXTE FAMILIAL</div>
+      <p class="narrative">
+        Nathaniel Roy naît en Norvège au sein d'une famille de la haute société. Sa mère figure parmi les premiers chercheurs recrutés pour analyser le phénomène des failles anomales. Fortement absorbée par ses recherches, elle confie la majorité de son éducation à son père. Cependant, l'enfant grandit au contact permanent du milieu scientifique, sa mère recevant régulièrement ses collaborateurs à leur domicile. Nathaniel développe très tôt une écoute attentive des discussions théoriques de ces spécialistes.
+      </p>
+    </div>
+
+    <div class="timeline-event">
+      <div class="timeline-title">2. FORMATION ACADÉMIQUE</div>
+      <p class="narrative">
+        Inspiré par les travaux de sa mère, Nathaniel oriente rapidement ses études vers le domaine scientifique. Il commence ses premières interventions théoriques aux côtés des équipes de sa mère, qui lui enseignent les méthodes de laboratoire. Remarqué pour son intellect, il est réorienté vers l'un des rares centres d'instruction spécialisés de l'époque. Son cursus s'avère brillant, bien qu'il demeure en retrait de ses camarades, animé par des ambitions académiques plus vastes.
+      </p>
+    </div>
+
+    <div class="timeline-event">
+      <div class="timeline-title">3. ASCENSION AU SEIN DU B.C.A.</div>
+      <p class="narrative">
+        Diplômé major de sa promotion, il rejoint les effectifs du Bureau de Contrôle des Anomalies. Il y démontre une efficacité remarquable, devenant un assistant de recherche disputé entre plusieurs départements scientifiques. Ses compétences analytiques lui permettent d'obtenir rapidement le grade de Chercheur Principal.
+      </p>
+    </div>
+
+    <div class="timeline-event">
+      <div class="timeline-title">4. INCIDENT DE TRANSFORMATION</div>
+      <p class="narrative">
+        En revenant d'une réunion professionnelle, le chercheur est attiré dans une ruelle par une entité hostile d'apparence humaine aux yeux rougeoyants. L'entité l'attaque au cou pour se nourrir. Lors de la confrontation, Nathaniel se débat et mord son agresseur à la jugulaire, ingérant involontairement une quantité mesurable de sang vampirique. Pris en charge par les services médicaux d'urgence du BCA, la contamination s'avère irréversible et entraîne sa mutation.
+      </p>
+    </div>
+
+    <div class="timeline-event">
+      <div class="timeline-title">5. MESURES RÈGLEMENTAIRES ET SUIVI</div>
+      <p class="narrative">
+        Suite à l'accident, la direction du BCA valide un protocole de maintien en fonction sous réserve de contrôles biologiques et psychologiques réguliers. Cet événement a durablement modifié sa perception de son environnement et ses relations professionnelles, conduisant à une restructuration complète de son profil d'accréditation.
+      </p>
+    </div>
+  </div>
+
+  <!-- FOOTER BAND -->
+  <div class="footer-band">
+    <span>B.C.A. SECURITY DATABASE · DOSSIER #ROY-3109</span>
+    <span class="sec-ok">REGISTRE MIS À JOUR · ACCÈS AUTORISÉ</span>
+  </div>
+
+</div>
+
+</body>
+</html>
